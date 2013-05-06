@@ -30,11 +30,21 @@ Route::get('/', function()
 
     /*
     $team = Team::find(1);
-    $team->members()->attach($user); */
-
     $user = User::find(1);
 
-    var_dump($user->teams[0]);
+    $report = new Report();
+    $report->title = 'ok done';
+    $report->team_id = $team->id;
+    $report->user_id = $user->id;
+
+    $report->save(); */
+
+    $report = Report::find(1);
+    var_dump($report->reporter);
+
+
+
+
 
 
     return '';

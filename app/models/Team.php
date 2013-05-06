@@ -1,6 +1,7 @@
 <?php
 
-class Team extends Eloquent {
+class Team extends Eloquent
+{
 
     protected $table = 'teams';
 
@@ -16,6 +17,11 @@ class Team extends Eloquent {
     public function members()
     {
         return $this->belongsToMany('User', 'teams_users', 'team_id', 'user_id');
+    }
+
+    public function reports()
+    {
+        return $this->hasMany('Report', 'team_id');
     }
 
 }
