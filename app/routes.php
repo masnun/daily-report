@@ -39,13 +39,13 @@ Route::get('/', function()
 
     $report->save(); */
 
-    $report = Report::find(1);
-    var_dump($report->reporter);
+    //$report = Report::find(1);
+    //var_dump($report->reporter);
 
 
 
 
 
 
-    return '';
+    return View::make('home.index');
 });
