@@ -27,10 +27,9 @@
     @show
 </head>
 <body>
-
-
-    @section("content")
-
-    @show
+    <div class="container">
+        @section("content")
+        @show
+    </div>
 </body>
 </html>

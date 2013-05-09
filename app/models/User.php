@@ -39,6 +39,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface
         return $this->hasMany('Report', 'user_id');
     }
 
+    // scope exists
+    public static function exists($key, $value)
+    {
+    	$data = static::where($key,'=',$value)->get();
+    	return (bool) count($data);
+    }
+
 
 	/**
 	 * Get the unique identifier for the user.

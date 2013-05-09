@@ -43,9 +43,10 @@ Route::get('/', function()
     //var_dump($report->reporter);
 
 
-
-
-
+    //var_dump(User::exists('username', 'masnun22'));
 
     return View::make('home.index');
 });
+
+// Auths
+Route::controller('auth','AuthController');
