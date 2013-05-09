@@ -13,13 +13,14 @@ class AuthController extends BaseController {
         $email = Input::get('email', null);
         $password = Input::get('password', null);
 
+        $data = array();
+        $data['username'] = $username;
+        $data['email'] = $email;
+
         if(empty($username) || empty($email) || empty($password))
         {
-            $data = array();
-            $data['error'] = 'One or more fields were empty!';
-            $data['username'] = $username;
-            $data['email'] = $email;
 
+            $data['error'] = 'One or more fields were empty!';
             return View::make('auth.register')->with($data);
         }
         else
@@ -27,12 +28,14 @@ class AuthController extends BaseController {
 
             if(User::exists('username', $username))
             {
-                return View::make('auth.register')->with('error','The username is already taken!');
+                $data['error'] = 'The username is already taken!';
+                return View::make('auth.register')->with($data);
             }
 
             if(User::exists('email', $email))
             {
-                return View::make('auth.register')->with('error','The username is already taken!');
+                $data['error'] = 'The email is already in use!';
+                return View::make('auth.register')->with($data);
             }
 
             $user = new User();
@@ -47,5 +50,26 @@ class AuthController extends BaseController {
 
 
     }
+
+    public function getLogin()
+    {
+        return View::make('auth.login');
+    }
+
+    public function postLogin()
+    {
+        $username = Input::get('username');
+        $password = Input::get('password');
+
+        if(Auth::attempt(array('username' => $username, 'password' => $password)))
+        {
+            return "Logged In!";
+        }
+        else
+        {
+            return "Login failed!";
+        }
+    }
+
 
 }
