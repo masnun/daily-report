@@ -25,6 +25,7 @@
 
             <input class="btn" type="submit" value="Register">
         </form>
+
     </div>
 </div>
 @stop

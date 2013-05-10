@@ -28,9 +28,12 @@
 
         <div class="span4">
                 <h4> Add Team </h4>
+                <div>
+                    {{ $error }}
+                </div>
                 <form action="" method="POST">
-                    <strong>Title:</strong><br/>
-                    <input type="text" value="{{ $title }}" name="title"><br/>
+                    <strong>Name:</strong><br/>
+                    <input type="text" value="{{ $name }}" name="name"><br/>
                     <input class="btn" type="submit" value="Add Team">
                 </form>
         </div>
