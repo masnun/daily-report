@@ -15,9 +15,24 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function showWelcome()
+	public function __construct()
 	{
-		return View::make('hello');
+		$this->beforeFilter('auth');
+	}
+
+	public function getDashboard()
+	{
+		$data = array();
+		$data['user'] = Auth::user();
+		$data['title'] = null;
+
+		return View::make('home.dashboard')->with($data);
+	}
+
+	public function postDashboard()
+	{
+		$title = Input::get('title');
+
 	}
 
 }

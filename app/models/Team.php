@@ -24,4 +24,20 @@ class Team extends Eloquent
         return $this->hasMany('Report', 'team_id');
     }
 
+    public static function exists($name, $user)
+    {
+        if($user instanceof User)
+        {
+            $userId = $user->id;
+        }
+        else
+        {
+            $userId = $user;
+        }
+
+        $data = static::where('name','=', $name)->where('owner_id','=', $userId)->get();
+        return (bool) count($data);
+    }
+
+
 }

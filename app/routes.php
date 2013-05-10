@@ -48,5 +48,6 @@ Route::get('/', function()
     return View::make('home.index');
 });
 
-// Auths
+// RESTful Controllers
 Route::controller('auth','AuthController');
+Route::controller('home','HomeController');

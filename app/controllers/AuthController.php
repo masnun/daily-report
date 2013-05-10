@@ -63,7 +63,7 @@ class AuthController extends BaseController {
 
         if(Auth::attempt(array('username' => $username, 'password' => $password)))
         {
-            return "Logged In!";
+            return Redirect::to('/home/dashboard');
         }
         else
         {
