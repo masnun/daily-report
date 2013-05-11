@@ -26,17 +26,34 @@ class Team extends Eloquent
 
     public static function exists($name, $user)
     {
-        if($user instanceof User)
-        {
+        if ($user instanceof User) {
             $userId = $user->id;
-        }
-        else
-        {
+        } else {
             $userId = $user;
         }
 
-        $data = static::where('name','=', $name)->where('owner_id','=', $userId)->get();
-        return (bool) count($data);
+        $data = static::where('name', '=', $name)->where('owner_id', '=', $userId)->get();
+        return (bool)count($data);
+    }
+
+    public static function isMember($user, $team)
+    {
+        if ($user instanceof User) {
+            $userId = $user->id;
+        } else {
+            $userId = $user;
+        }
+
+        if (!$team instanceof Team) {
+            $team = Team::find($team);
+        }
+
+        $members = array();
+        foreach ($team->members as $member) {
+            $members[] = $member->id;
+        }
+
+        return $team->owner_id == $userId || in_array($userId, $members);
     }
 
 

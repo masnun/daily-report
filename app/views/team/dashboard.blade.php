@@ -34,7 +34,8 @@
         </div>
 
         <div class="span4">
-
+            <h5>Add Report</h5>
+            <form action="/team/add_report"
         </div>
 
 
