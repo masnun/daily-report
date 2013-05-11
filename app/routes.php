@@ -11,8 +11,7 @@
 |
 */
 
-Route::get('/', function()
-{
+Route::get('/', function () {
     /*
 	$user = new User();
     $user->password = Hash::make('masnun');
@@ -49,10 +48,11 @@ Route::get('/', function()
 });
 
 // RESTful Controllers
-Route::controller('auth','AuthController');
-Route::controller('home','HomeController');
+Route::controller('auth', 'AuthController');
+Route::controller('home', 'HomeController');
+Route::controller('report', 'ReportController');
 
 
 // Single Team
-Route::model('team','Team');
-Route::get('/team/{team}','TeamController@getTeam');
+Route::model('team', 'Team');
+Route::get('/team/{team}', 'TeamController@getTeam');

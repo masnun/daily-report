@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="row">
-        <div class="offset1 span4">
+        <div class="offset1 span6">
             <h1> {{ $team->name }} </h1>
             <strong>Owner:</strong> {{ $team->owner->username }} <br/><br/>
 
@@ -33,9 +33,14 @@
 
         </div>
 
-        <div class="span4">
+        <div class="offset1 span4">
             <h5>Add Report</h5>
-            <form action="/team/add_report"
+            <form action="/report/add" method="POST">
+                <strong>Task:</strong><br/>
+                <input type="text" name="title">
+                <input type="hidden" name="team_id" value="{{ $team->id }}"><br/>
+                <input type="submit" value="Add" class="btn" />
+            </form>
         </div>
 
 
