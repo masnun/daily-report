@@ -51,3 +51,8 @@ Route::get('/', function()
 // RESTful Controllers
 Route::controller('auth','AuthController');
 Route::controller('home','HomeController');
+
+
+// Single Team
+Route::model('team','Team');
+Route::get('/team/{team}','TeamController@getTeam');
