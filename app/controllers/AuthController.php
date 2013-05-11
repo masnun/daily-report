@@ -1,10 +1,15 @@
 <?php
 
-class AuthController extends BaseController {
+class AuthController extends BaseController
+{
 
     public function getRegister()
     {
-        return View::make('auth.register');
+        $data = array();
+        $data['username'] = null;
+        $data['email'] = null;
+        $data['name'] = null;
+        return View::make('auth.register')->with($data);
     }
 
     public function postRegister()
@@ -12,28 +17,25 @@ class AuthController extends BaseController {
         $username = Input::get('username', null);
         $email = Input::get('email', null);
         $password = Input::get('password', null);
+        $name = Input::get('name', null);
 
         $data = array();
         $data['username'] = $username;
         $data['email'] = $email;
+        $data['name'] = $name;
 
-        if(empty($username) || empty($email) || empty($password))
-        {
+        if (empty($username) || empty($email) || empty($password) || empty($name)) {
 
             $data['error'] = 'One or more fields were empty!';
             return View::make('auth.register')->with($data);
-        }
-        else
-        {
+        } else {
 
-            if(User::exists('username', $username))
-            {
+            if (User::exists('username', $username)) {
                 $data['error'] = 'The username is already taken!';
                 return View::make('auth.register')->with($data);
             }
 
-            if(User::exists('email', $email))
-            {
+            if (User::exists('email', $email)) {
                 $data['error'] = 'The email is already in use!';
                 return View::make('auth.register')->with($data);
             }
@@ -42,6 +44,7 @@ class AuthController extends BaseController {
             $user->username = $username;
             $user->email = $email;
             $user->password = Hash::make($password);
+            $user->name = $name;
 
             $user->save();
 
@@ -61,12 +64,9 @@ class AuthController extends BaseController {
         $username = Input::get('username');
         $password = Input::get('password');
 
-        if(Auth::attempt(array('username' => $username, 'password' => $password)))
-        {
+        if (Auth::attempt(array('username' => $username, 'password' => $password))) {
             return Redirect::to('/home/dashboard');
-        }
-        else
-        {
+        } else {
             return "Login failed!";
         }
     }

@@ -17,6 +17,9 @@
             <strong>Username:</strong><br/>
             <input type="text" value="{{ $username }}" name="username"><br/>
 
+            <strong>Full Name:</strong><br/>
+            <input type="text" value="{{ $name }}" name="name"><br/>
+
             <strong>Email:</strong><br/>
             <input type="text" value="{{ $email }}" name="email"><br/>
 
