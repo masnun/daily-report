@@ -11,6 +11,7 @@ class TeamController extends BaseController {
     {
             $data = array();
             $data['team'] = $team;
+            $data['reports'] = Report::today($team->id);
             $data['error'] = null;
             return View::make('team.dashboard')->with($data);
     }

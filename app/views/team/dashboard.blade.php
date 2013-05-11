@@ -13,18 +13,20 @@
             <table class="table table-bordered">
                 <thead>
                     <td>
-                        Member
+                        <strong>Member</strong>
                     </td>
                     <td>
-                        Task
+                        <strong>Task</strong>
                     </td>
                     <td>
-                        Done
+                        <strong>Done</strong>
                     </td>
                 </thead>
                 <tbody>
-                    @foreach($team->reports as $report)
+                    @foreach($reports as $report)
+                    <tr>
                         <td>{{ $report->reporter->name }}</td> <td>{{ $report->title }}</td> <td>{{ $report->created_at }}</td>
+                    </tr>
                     @endforeach
                 </tbody>
             </table>
