@@ -53,6 +53,8 @@ Route::controller('home', 'HomeController');
 Route::controller('report', 'ReportController');
 
 
+
 // Single Team
 Route::model('team', 'Team');
 Route::get('/team/{team}', 'TeamController@getTeam');
+Route::post('/team/members/add', 'TeamController@addMember');

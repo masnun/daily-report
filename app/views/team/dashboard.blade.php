@@ -59,6 +59,14 @@
                 There are no other team members yet!<br/><br/>
             @endif
 
+            <h5>Add Team Member</h5>
+            <form action="/team/members/add" method="POST">
+                <strong>Email Address:</strong><br/>
+                <input type="text" name="email">
+                <input type="hidden" name="team_id" value="{{ $team->id }}"><br/>
+                <input type="submit" value="Add" class="btn" />
+            </form>
+
         </div>
 
 

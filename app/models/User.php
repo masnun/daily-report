@@ -26,12 +26,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface
      */
     public function teams()
     {
-        return $this->hasMany('Team','owner_id');
+        return $this->hasMany('Team', 'owner_id');
     }
 
     public function members_to()
     {
-        return $this->belongsToMany('Team',"teams_users", "user_id", "team_id");
+        return $this->belongsToMany('Team', "teams_users", "user_id", "team_id");
     }
 
     public function reports()
@@ -39,13 +39,22 @@ class User extends Eloquent implements UserInterface, RemindableInterface
         return $this->hasMany('Report', 'user_id');
     }
 
-    // scope exists
+
     public static function exists($key, $value)
     {
-        $data = static::where($key,'=',$value)->get();
-        return (bool) count($data);
+        $data = static::where($key, '=', $value)->get();
+        return (bool)count($data);
     }
 
+    public static function findByEmail($email)
+    {
+        $data = static::where('email', '=', $email)->get();
+        if (count($data)) {
+            return $data[0];
+        } else {
+            return FALSE;
+        }
+    }
 
     /**
      * Get the unique identifier for the user.
