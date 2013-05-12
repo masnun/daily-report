@@ -56,5 +56,20 @@ class Team extends Eloquent
         return $team->owner_id == $userId || in_array($userId, $members);
     }
 
+    public static function isOwner($user, $team)
+    {
+        if ($user instanceof User) {
+            $userId = $user->id;
+        } else {
+            $userId = $user;
+        }
+
+        if (!$team instanceof Team) {
+            $team = Team::find($team);
+        }
+
+        return $team->owner_id == $userId;
+    }
+
 
 }
